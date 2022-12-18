@@ -1,9 +1,0 @@
-- request:
-    url:
-      host: 127.0.0.1:8884
-      scheme: http
-      path: /hello
-  response:
-    status: 201 Created
-
-
