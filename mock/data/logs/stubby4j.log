@@ -26,3 +26,31 @@ Available secure endpoints:
  > https://0.0.0.0:7443		HTTP/2 over TLS (h2) stubs portal
 
 2022-12-18T13:51:18,245+00:00 INFO i.g.a.s.Main Quit: ctrl-c
+2022-12-18T14:21:48,206+00:00 INFO i.g.a.s.u.ConsoleUtils Loaded stub metadata: [GET] ^/hello$
+2022-12-18T14:21:48,757+00:00 DEBUG i.g.a.s.f.MainYamlScanner Main YAML scan enabled, watching /home/stubby4j/data/main.yaml.
+2022-12-18T14:21:48,760+00:00 DEBUG i.g.a.s.f.ExternalFilesScanner External file scan enabled, watching external files referenced from /home/stubby4j/data/main.yaml.
+2022-12-18T14:21:48,768+00:00 DEBUG i.g.a.s.Main stubby4j successfully started after 1390 milliseconds.
+2022-12-18T14:21:48,769+00:00 DEBUG i.g.a.s.Main Admin portal:
+--------------------------------------------------------------------------------------------------------
+ > http://0.0.0.0:8889		Admin portal
+ > http://0.0.0.0:8889/status		Admin portal status
+
+
+Available insecure endpoints:
+--------------------------------------------------------------------------------------------------------
+ > http://0.0.0.0:8884		HTTP/1.1 stubs portal
+ > http://0.0.0.0:8884		HTTP/2 over TCP (h2c) stubs portal
+ > ws://0.0.0.0:8884/ws		HTTP/1.1 WebSockets stubs portal
+
+
+TLS layer configuration:
+--------------------------------------------------------------------------------------------------------
+ > Supported TLS protocol versions: [TLSv1, TLSv1.3, TLSv1.2, TLSv1.1] with ALPN extension on HTTP/2
+ > TLS layer configured using internal self-signed certificate
+
+
+Available secure endpoints:
+--------------------------------------------------------------------------------------------------------
+ > https://0.0.0.0:7443		HTTP/2 over TLS (h2) stubs portal
+
+2022-12-18T14:21:48,771+00:00 INFO i.g.a.s.Main Quit: ctrl-c
