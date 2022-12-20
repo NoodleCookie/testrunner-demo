@@ -1,0 +1,9 @@
+stages:
+  - type:
+    request:
+      url: www.baidu.com
+      method: GET
+      params: { }
+      body: { }
+    expect:
+      status: 200

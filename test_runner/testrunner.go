@@ -77,3 +77,8 @@ func (tr *Testrunner) ExecuteCase(caseFile string) error {
 
 	return testcase.Execute()
 }
+
+func (tr *Testrunner) Exec(caseFile string) (report *Report, err error) {
+
+	return nil, nil
+}

@@ -48,3 +48,14 @@ func (s *CaseSuite) TestRunnerRun(c *C) {
 	// then
 	c.Check(err, IsNil)
 }
+func (s *CaseSuite) TestRunnerExec(c *C) {
+	// given
+	testrunner := test_runner.Testrunner{}
+
+	// when
+	report, err := testrunner.Exec("./data/testsuite_correct_baidu_request")
+
+	// then
+	c.Check(err, IsNil)
+	c.Check(report, IsNil)
+}

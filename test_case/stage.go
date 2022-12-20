@@ -1,10 +1,14 @@
 package test_case
 
-import "fmt"
+import (
+	"fmt"
+	"testrunner/test_runner"
+)
 
 type Stage struct {
-	Mold    StageMold `yaml:"type,omitempty"`
-	Request Request   `yaml:"request,omitempty"`
+	Mold    StageMold          `yaml:"type,omitempty"`
+	Request Request            `yaml:"request,omitempty"`
+	Expect  test_runner.Expect `yaml:"expect,omitempty"`
 }
 
 type Request struct {
