@@ -1,0 +1,25 @@
+stages:
+  - type:
+    request:
+      url: http://www.google.com/
+      method: GET
+      params: { }
+      body: "{ }"
+    expect:
+      status: 200
+  - type:
+    request:
+      url: http://www.bilibili.com/
+      method: GET
+      params: { }
+      body: "{ }"
+    expect:
+      status: 200
+  - type:
+    request:
+      url: http://www.baidu.com/
+      method: GET
+      params: { }
+      body: "{ }"
+    expect:
+      status: 200

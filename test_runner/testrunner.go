@@ -31,13 +31,13 @@ func (tr *Testrunner) Run(dir string) error {
 	return nil
 }
 
-func (tr *Testrunner) CheckDescription(dir string) (*TestDescription, error) {
+func (tr *Testrunner) CheckDescription(dir string) (*test_case.TestDescription, error) {
 	filename, ok := util.FileExistWithExtensionName(filepath.Join(dir, common.DescriptionFileName), common.SupportYamlFileType...)
 	if !ok {
 		return nil, errors.New("not found description file, please create file with name description.yaml or description.yml")
 	}
 
-	description := TestDescription{}
+	description := test_case.TestDescription{}
 	file, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("check your %s has correct privilege", filename))
@@ -76,4 +76,9 @@ func (tr *Testrunner) ExecuteCase(caseFile string) error {
 	}
 
 	return testcase.Execute()
+}
+
+func (tr *Testrunner) Exec(caseFile string) (report *test_case.SuiteReport, err error) {
+
+	return nil, nil
 }

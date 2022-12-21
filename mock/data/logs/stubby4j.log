@@ -1,8 +1,8 @@
-2022-12-18T13:51:17,546+00:00 INFO i.g.a.s.u.ConsoleUtils Loaded stub metadata: [GET] ^/hello$
-2022-12-18T13:51:18,219+00:00 DEBUG i.g.a.s.f.MainYamlScanner Main YAML scan enabled, watching /home/stubby4j/data/main.yaml.
-2022-12-18T13:51:18,225+00:00 DEBUG i.g.a.s.f.ExternalFilesScanner External file scan enabled, watching external files referenced from /home/stubby4j/data/main.yaml.
-2022-12-18T13:51:18,239+00:00 DEBUG i.g.a.s.Main stubby4j successfully started after 1266 milliseconds.
-2022-12-18T13:51:18,241+00:00 DEBUG i.g.a.s.Main Admin portal:
+2022-12-21T08:53:48,016+00:00 INFO i.g.a.s.u.ConsoleUtils Loaded stub metadata: [GET] ^/hello$
+2022-12-21T08:53:51,029+00:00 DEBUG i.g.a.s.f.MainYamlScanner Main YAML scan enabled, watching /home/stubby4j/data/main.yaml.
+2022-12-21T08:53:51,035+00:00 DEBUG i.g.a.s.f.ExternalFilesScanner External file scan enabled, watching external files referenced from /home/stubby4j/data/main.yaml.
+2022-12-21T08:53:51,083+00:00 DEBUG i.g.a.s.Main stubby4j successfully started after 5976 milliseconds.
+2022-12-21T08:53:51,089+00:00 DEBUG i.g.a.s.Main Admin portal:
 --------------------------------------------------------------------------------------------------------
  > http://0.0.0.0:8889		Admin portal
  > http://0.0.0.0:8889/status		Admin portal status
@@ -25,32 +25,139 @@ Available secure endpoints:
 --------------------------------------------------------------------------------------------------------
  > https://0.0.0.0:7443		HTTP/2 over TLS (h2) stubs portal
 
-2022-12-18T13:51:18,245+00:00 INFO i.g.a.s.Main Quit: ctrl-c
-2022-12-18T14:21:48,206+00:00 INFO i.g.a.s.u.ConsoleUtils Loaded stub metadata: [GET] ^/hello$
-2022-12-18T14:21:48,757+00:00 DEBUG i.g.a.s.f.MainYamlScanner Main YAML scan enabled, watching /home/stubby4j/data/main.yaml.
-2022-12-18T14:21:48,760+00:00 DEBUG i.g.a.s.f.ExternalFilesScanner External file scan enabled, watching external files referenced from /home/stubby4j/data/main.yaml.
-2022-12-18T14:21:48,768+00:00 DEBUG i.g.a.s.Main stubby4j successfully started after 1390 milliseconds.
-2022-12-18T14:21:48,769+00:00 DEBUG i.g.a.s.Main Admin portal:
---------------------------------------------------------------------------------------------------------
- > http://0.0.0.0:8889		Admin portal
- > http://0.0.0.0:8889/status		Admin portal status
+2022-12-21T08:53:51,093+00:00 INFO i.g.a.s.Main Quit: ctrl-c
+2022-12-21T08:55:23,119+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:23] => HTTP GET on [/hello]
+2022-12-21T08:55:23,135+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,137+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-21T08:55:23,138+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,152+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,153+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-21T08:55:23,155+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,214+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-21T08:55:23,218+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-21T08:55:23,220+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 64 milliseconds
+2022-12-21T08:55:23,262+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:23] <= 201 Created
 
+2022-12-21T08:55:23,280+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:23] => HTTP GET on [/hello]
+2022-12-21T08:55:23,284+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,285+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-21T08:55:23,286+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,287+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,287+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-21T08:55:23,288+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,290+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-21T08:55:23,291+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-21T08:55:23,292+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 3 milliseconds
+2022-12-21T08:55:23,296+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:23] <= 201 Created
 
-Available insecure endpoints:
---------------------------------------------------------------------------------------------------------
- > http://0.0.0.0:8884		HTTP/1.1 stubs portal
- > http://0.0.0.0:8884		HTTP/2 over TCP (h2c) stubs portal
- > ws://0.0.0.0:8884/ws		HTTP/1.1 WebSockets stubs portal
+2022-12-21T08:55:23,299+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:23] => HTTP GET on [/hello]
+2022-12-21T08:55:23,299+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,300+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-21T08:55:23,301+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,302+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,302+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-21T08:55:23,303+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:23,304+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-21T08:55:23,305+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-21T08:55:23,306+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 2 milliseconds
+2022-12-21T08:55:23,309+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:23] <= 201 Created
 
+2022-12-21T08:55:33,633+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:33] => HTTP GET on [/hello]
+2022-12-21T08:55:33,637+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:33,638+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-21T08:55:33,639+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:33,641+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:33,642+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-21T08:55:33,643+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:33,645+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-21T08:55:33,646+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-21T08:55:33,647+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 4 milliseconds
+2022-12-21T08:55:33,653+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:33] <= 201 Created
 
-TLS layer configuration:
---------------------------------------------------------------------------------------------------------
- > Supported TLS protocol versions: [TLSv1, TLSv1.3, TLSv1.2, TLSv1.1] with ALPN extension on HTTP/2
- > TLS layer configured using internal self-signed certificate
+2022-12-21T08:55:33,655+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:33] => HTTP GET on [/hello]
+2022-12-21T08:55:33,657+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:33,659+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-21T08:55:33,660+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:33,661+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:33,661+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-21T08:55:33,662+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-21T08:55:33,665+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-21T08:55:33,666+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-21T08:55:33,667+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 4 milliseconds
+2022-12-21T08:55:33,670+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-21 08:55:33] <= 201 Created
 
-
-Available secure endpoints:
---------------------------------------------------------------------------------------------------------
- > https://0.0.0.0:7443		HTTP/2 over TLS (h2) stubs portal
-
-2022-12-18T14:21:48,771+00:00 INFO i.g.a.s.Main Quit: ctrl-c
