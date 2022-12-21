@@ -36,8 +36,10 @@ func (s *Stage) Execute() error {
 	body := res.Body
 	resByte, err := io.ReadAll(body)
 	resString := string(resByte)
+	body.Close()
 	//compare with expect and generate pass
-	pass := (s.Expect.Res == resString) && (s.Expect.Status == statusCode)
+	//pass := (s.Expect.Res == resString) && (s.Expect.Status == statusCode)
+	pass := s.Expect.Status == statusCode
 	//generate compare
 	compare := Compare{expect: s.Expect, actual: Response{statusCode, resString}}
 	//return result

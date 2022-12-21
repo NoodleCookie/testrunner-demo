@@ -1,6 +1,9 @@
 package test_case
 
+import "time"
+
 type Case struct {
+	name   string
 	Stages []Stage `yaml:"stages,omitempty"`
 	option struct {
 		filters []func(stage Stage) bool
@@ -19,12 +22,15 @@ func (c *Case) AddFilter(filter func(stage Stage) bool) *Case {
 
 func (c *Case) Execute() error {
 	if c.Stages != nil {
+		start := time.Now()
 		for _, stage := range c.filter() {
 			err := stage.Execute()
 			if err != nil {
 				return err
 			}
 		}
+		duration := time.Since(start)
+		report.totalTime = duration
 	}
 	return nil
 }
@@ -49,4 +55,8 @@ func (c *Case) filter() []Stage {
 		}
 	}
 	return result
+}
+
+func (c *Case) SetCaseName(name string) {
+	c.name = name
 }
