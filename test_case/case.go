@@ -7,6 +7,8 @@ type Case struct {
 	}
 }
 
+var report CaseReport
+
 func (c *Case) AddFilter(filter func(stage Stage) bool) *Case {
 	if c.option.filters == nil {
 		c.option.filters = make([]func(stage Stage) bool, 0)
@@ -18,7 +20,8 @@ func (c *Case) AddFilter(filter func(stage Stage) bool) *Case {
 func (c *Case) Execute() error {
 	if c.Stages != nil {
 		for _, stage := range c.filter() {
-			if err := stage.Execute(); err != nil {
+			err := stage.Execute()
+			if err != nil {
 				return err
 			}
 		}

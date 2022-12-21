@@ -1,9 +1,9 @@
 stages:
   - type:
     request:
-      url: www.baidu.com
+      url: http://www.baidu.com/
       method: GET
       params: { }
-      body: { }
+      body: "{ }"
     expect:
       status: 200
