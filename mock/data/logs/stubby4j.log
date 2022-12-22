@@ -943,3 +943,219 @@
 2022-12-22T03:55:53,346+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 3 milliseconds
 2022-12-22T03:55:53,349+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 03:55:53] <= 201 Created
 
+2022-12-22T04:49:57,215+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] => HTTP GET on [/hello]
+2022-12-22T04:49:57,220+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,222+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-22T04:49:57,224+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,226+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,228+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-22T04:49:57,229+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,231+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-22T04:49:57,234+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-22T04:49:57,235+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 5 milliseconds
+2022-12-22T04:49:57,238+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] <= 201 Created
+
+2022-12-22T04:49:57,243+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] => HTTP GET on [/hello]
+2022-12-22T04:49:57,245+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,246+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-22T04:49:57,248+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,251+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,253+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-22T04:49:57,254+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,255+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-22T04:49:57,257+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-22T04:49:57,258+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 3 milliseconds
+2022-12-22T04:49:57,261+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] <= 201 Created
+
+2022-12-22T04:49:57,522+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] => HTTP GET on [/hello]
+2022-12-22T04:49:57,524+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,524+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-22T04:49:57,525+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,526+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,527+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-22T04:49:57,528+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,530+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-22T04:49:57,531+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-22T04:49:57,532+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 2 milliseconds
+2022-12-22T04:49:57,535+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] <= 201 Created
+
+2022-12-22T04:49:57,537+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] => HTTP GET on [/hello]
+2022-12-22T04:49:57,541+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,542+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-22T04:49:57,543+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,544+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,545+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-22T04:49:57,546+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,548+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-22T04:49:57,549+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-22T04:49:57,550+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 3 milliseconds
+2022-12-22T04:49:57,553+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] <= 201 Created
+
+2022-12-22T04:49:57,561+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] => HTTP GET on [/hello]
+2022-12-22T04:49:57,562+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,563+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-22T04:49:57,564+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,565+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,566+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-22T04:49:57,567+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,569+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-22T04:49:57,570+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-22T04:49:57,571+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 2 milliseconds
+2022-12-22T04:49:57,573+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] <= 201 Created
+
+2022-12-22T04:49:57,575+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] => HTTP GET on [/hello]
+2022-12-22T04:49:57,575+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,576+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-22T04:49:57,577+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,578+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,579+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-22T04:49:57,580+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,582+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-22T04:49:57,583+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-22T04:49:57,584+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 3 milliseconds
+2022-12-22T04:49:57,586+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] <= 201 Created
+
+2022-12-22T04:49:57,589+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] => HTTP GET on [/hello]
+2022-12-22T04:49:57,590+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,593+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-22T04:49:57,593+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,595+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,596+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-22T04:49:57,597+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,599+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-22T04:49:57,604+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-22T04:49:57,606+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 8 milliseconds
+2022-12-22T04:49:57,608+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] <= 201 Created
+
+2022-12-22T04:49:57,610+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] => HTTP GET on [/hello]
+2022-12-22T04:49:57,611+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,613+00:00 DEBUG i.g.a.s.u.ConsoleUtils    PROTOCOL: HTTP/1.1
+   METHOD: GET
+   CONTEXT PATH: 
+   SERVLET PATH: 
+   AUTH TYPE: null
+   REMOTE USER: null
+   REQUEST URI: /hello
+   REQUEST URL: http://127.0.0.1:8884/hello
+   QUERY STRING: null
+   PATH INFO: /hello
+   PATH TRANSLATED: null
+   HEADERS: {
+   'User-Agent': Go-http-client/1.1,
+   'Host': 127.0.0.1:8884,
+   'Accept-Encoding': gzip,
+}
+2022-12-22T04:49:57,613+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING RAW HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,615+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,615+00:00 DEBUG i.g.a.s.u.ConsoleUtils StubRequest{url=/hello, method=[GET], query={}, headers={user-agent=Go-http-client/1.1, host=127.0.0.1:8884, accept-encoding=gzip}}
+2022-12-22T04:49:57,618+00:00 DEBUG i.g.a.s.u.ConsoleUtils  ***** [/DEBUG INCOMING ASSERTING HTTP REQUEST DUMP] ***** 
+2022-12-22T04:49:57,619+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed URL [^/hello$] WITH incoming [/hello]
+2022-12-22T04:49:57,621+00:00 INFO i.g.a.s.s.StubMatcher Matched on stubbed METHOD [[GET]] WITH incoming [[GET]]
+2022-12-22T04:49:57,622+00:00 DEBUG i.g.a.s.s.StubRepository Found a stubbed match after 3 milliseconds
+2022-12-22T04:49:57,624+00:00 INFO i.g.a.s.u.ConsoleUtils [2022-12-22 04:49:57] <= 201 Created
+

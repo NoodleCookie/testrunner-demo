@@ -1,7 +1,6 @@
 package test_suite
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"testrunner/common"
@@ -28,8 +27,6 @@ type Assertion struct {
 func (s *Stage) executeApi() error {
 
 	if common.CurrentPhase() == common.Asserting {
-
-		fmt.Println("execute ", s.Request)
 		//send http request base on stage request
 		request, err := http.NewRequest(s.Request.Method, s.Request.Url, nil)
 		if err != nil {
@@ -77,7 +74,6 @@ func (s *Stage) executeApi() error {
 
 func (s *Stage) apiReport(pass bool, detail interface{}) {
 	if common.CurrentPhase() == common.Asserting {
-		report := test_report.GetReport()
-		report.AppendStage(s.Name, pass, detail)
+		test_report.GetReport().AppendStage(s.Name, pass, detail)
 	}
 }

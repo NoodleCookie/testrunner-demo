@@ -2,6 +2,7 @@ package unit_test
 
 import (
 	"testing"
+	"testrunner/test_report"
 	"testrunner/test_runner"
 
 	. "gopkg.in/check.v1"
@@ -55,6 +56,12 @@ func (s *CaseSuite) TestRunnerExec(c *C) {
 
 	// when
 	err := testrunner.Run("./data/testsuite_correct_baidu_request")
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	_, err = test_report.GetReport().Gen("./gen")
 
 	// then
 	c.Check(err, IsNil)
