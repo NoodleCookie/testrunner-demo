@@ -1,4 +1,4 @@
-package test_case
+package test_suite
 
 type Executable interface {
 	Execute() error
@@ -6,9 +6,10 @@ type Executable interface {
 
 var _ Executable = (*Stage)(nil)
 var _ Executable = (*Case)(nil)
+var _ Executable = (*Suite)(nil)
 
-type StageMold string
+type StageType string
 
 const (
-	API = StageMold("api")
+	API = StageType("api")
 )

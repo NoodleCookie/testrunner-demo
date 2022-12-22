@@ -1,4 +1,4 @@
-package test_case
+package test_suite
 
 type Result struct {
 	request  Request

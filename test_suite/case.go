@@ -1,9 +1,13 @@
-package test_case
+package test_suite
 
-import "time"
+import (
+	"testrunner/common"
+	"testrunner/test_report"
+	"time"
+)
 
 type Case struct {
-	name   string
+	Name   string  `yaml:"name,omitempty"`
 	Stages []Stage `yaml:"stages,omitempty"`
 	option struct {
 		filters []func(stage Stage) bool
@@ -21,6 +25,7 @@ func (c *Case) AddFilter(filter func(stage Stage) bool) *Case {
 }
 
 func (c *Case) Execute() error {
+	c.report()
 	if c.Stages != nil {
 		start := time.Now()
 		for _, stage := range c.filter() {
@@ -33,6 +38,13 @@ func (c *Case) Execute() error {
 		report.totalTime = duration
 	}
 	return nil
+}
+
+func (c *Case) report() {
+	if common.CurrentPhase() == common.Asserting {
+		report := test_report.GetReport()
+		report.AppendCase(c.Name)
+	}
 }
 
 func (c *Case) filter() []Stage {
@@ -55,8 +67,4 @@ func (c *Case) filter() []Stage {
 		}
 	}
 	return result
-}
-
-func (c *Case) SetCaseName(name string) {
-	c.name = name
 }

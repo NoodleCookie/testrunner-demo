@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func FileExist(path string) bool {
+func FileOrDirExist(path string) bool {
 	_, err := os.Stat(path)
 	if err != nil {
 		if os.IsExist(err) {
@@ -20,7 +20,7 @@ func FileExist(path string) bool {
 func FileExistWithExtensionName(path string, extensionName ...string) (string, bool) {
 	for _, extension := range extensionName {
 		fp := fmt.Sprintf("%s.%s", path, extension)
-		if FileExist(fp) {
+		if FileOrDirExist(fp) {
 			return fp, true
 		}
 	}

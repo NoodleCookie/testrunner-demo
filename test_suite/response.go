@@ -1,4 +1,4 @@
-package test_case
+package test_suite
 
 type Response struct {
 	Status int    `yaml:"status,omitempty"`
