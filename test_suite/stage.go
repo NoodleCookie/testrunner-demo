@@ -4,7 +4,6 @@ type Stage struct {
 	Type      StageType `yaml:"type,omitempty"`
 	Name      string    `yaml:"name,omitempty"`
 	Request   Request   `yaml:"request,omitempty"`
-	Expect    Response  `yaml:"expect,omitempty"`
 	Assertion Assertion `yaml:"assert,omitempty"`
 }
 
