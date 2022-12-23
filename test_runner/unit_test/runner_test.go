@@ -1,6 +1,8 @@
 package unit_test
 
 import (
+	"encoding/json"
+	"os"
 	"testing"
 	"testrunner/test_report"
 	"testrunner/test_runner"
@@ -65,4 +67,31 @@ func (s *CaseSuite) TestRunnerExec(c *C) {
 
 	// then
 	c.Check(err, IsNil)
+}
+
+func (s *CaseSuite) TestRunnerReportWithCorrectRequest(c *C) {
+	// given
+	testrunner := test_runner.Testrunner{}
+
+	// when
+	err := testrunner.Run("./data/testsuite_correct_baidu_request")
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	_, err = test_report.GetReport().Gen("./gen")
+
+	// then
+	file, _ := os.ReadFile("./gen/testrunner-report.json")
+	report := test_report.Report{}
+	_ = json.Unmarshal([]byte(file), &report)
+	c.Check(report, NotNil)
+	c.Check(report.Pass, Equals, true)
+	c.Check(report.Suites, HasLen, 1)
+	c.Check(report.Suites[0].Pass, Equals, true)
+	c.Check(report.Suites[0].Cases, HasLen, 2)
+	c.Check(report.Suites[0].Cases[0].Pass, Equals, true)
+	c.Check(report.Suites[0].Cases[0].Stages, HasLen, 2)
+
 }
