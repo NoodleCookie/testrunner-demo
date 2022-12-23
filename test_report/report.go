@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"testrunner/common"
 	"testrunner/util"
+	"time"
 )
 
 var report Report
@@ -28,9 +29,10 @@ type stageReport struct {
 }
 
 type caseReport struct {
-	Pass   bool           `json:"pass"`
-	Name   string         `json:"name"`
-	Stages []*stageReport `json:"stages,omitempty"`
+	Pass    bool           `json:"pass"`
+	Name    string         `json:"name"`
+	Stages  []*stageReport `json:"stages,omitempty"`
+	RunTime time.Duration  `json:"run-time,omitempty"`
 }
 
 type suiteReport struct {
@@ -62,7 +64,10 @@ func (r *Report) AppendCase(name string) {
 	}
 	suite.Cases = append(suite.Cases, &caseReport{Name: name})
 }
-
+func (r *Report) SetCaseRunTime(duration time.Duration) {
+	lastCase := r.getLastCase()
+	lastCase.RunTime = duration
+}
 func (r *Report) getLastCase() *caseReport {
 	suite := r.getLastSuite()
 	return suite.Cases[len(suite.Cases)-1]
