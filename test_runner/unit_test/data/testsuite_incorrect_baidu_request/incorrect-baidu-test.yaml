@@ -1,0 +1,17 @@
+stages:
+  - type: api
+    request:
+      url: http://www.baidu.com/
+      method: GET
+      params: { }
+      body: "{ }"
+    assert:
+      status: 201
+  - type: api
+    request:
+      url: http://www.runoob.com
+      method: GET
+      params: { }
+      body: "{ }"
+    assert:
+      status: 200
