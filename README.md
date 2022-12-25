@@ -23,11 +23,11 @@ stages:
   - type: api
     request:
       url: http://127.0.0.1:8884/hello
+      method: GET
     response:
       status: 201 Created
-    assertion:
-      equals:
-        status: /^20.* [a-zA-Z]+$/
+    assert:
+      status: /^20.* [a-zA-Z]+$/
 ```
 
 #### 代码层级
@@ -35,12 +35,21 @@ stages:
 ```yaml
 - testrunner
   - common          全局功能方法，变量
+  - demo            存放测试样例以及demo代码
   - mock            测试使用的mock服务
-  - test_assertion  测试断言代码
-  - test_case       测试用例代码
+  - test_assertion  负责执行断言的代码
+  - test_report     负责报告收集、整理的代码
+  - test_suite      测试用例代码 (基本结构 suite -> case -> stage)
   - test_runner     测试执行器代码
   - util            工具包
 ```
+
+#### 基本结构
+
+使用 `suite, case, stage` 来描述一套测试， 1个suite通过import字段引入n个case，1个case通过stages字段编写n个stage，testrunner通过遍历和识别root路径下所有的suite执行测试。
+
+因此 `suite, case, stage` 都是可执行的， 都应该实现`excutable`接口，在`Execute()`中进行读取环境变量（如系统环境变量`testrunner_phase`以及测试用例变量`testcase_varibales`）完成用例的初始化以及执行测试和生成报告的逻辑。
+
 
 #### Dev
 
