@@ -7,11 +7,25 @@ import (
 )
 
 type Case struct {
-	Name   string  `yaml:"name,omitempty"`
-	Stages []Stage `yaml:"stages,omitempty"`
+	name   string
+	Stages []Stage           `yaml:"stages,omitempty"`
+	Vars   map[string]string `yaml:"vars,omitempty"`
+
 	option struct {
-		filters []func(stage Stage) bool
+		filters   []func(stage Stage) bool
+		variables map[string]any
 	}
+}
+
+func (c *Case) SetVar(key string, value any) {
+	if c.option.variables == nil {
+		c.option.variables = make(map[string]any, 0)
+	}
+	c.option.variables[key] = value
+}
+
+func (c *Case) Var() map[string]any {
+	return c.option.variables
 }
 
 var report CaseReport
@@ -29,10 +43,15 @@ func (c *Case) Execute() error {
 	if c.Stages != nil {
 		start := time.Now()
 		for _, stage := range c.filter() {
-			err := stage.Execute()
-			if err != nil {
-				return err
+
+			c.classifyStageVariables(&stage)
+
+			if stage.Execute() != nil {
+				return stage.Execute()
 			}
+
+			c.classifyStageResponse(&stage)
+
 		}
 		duration := time.Since(start)
 		report.totalTime = duration
@@ -43,7 +62,7 @@ func (c *Case) Execute() error {
 func (c *Case) report() {
 	if common.CurrentPhase() == common.Asserting {
 		report := test_report.GetReport()
-		report.AppendCase(c.Name)
+		report.AppendCase(c.name)
 	}
 }
 
@@ -67,4 +86,32 @@ func (c *Case) filter() []Stage {
 		}
 	}
 	return result
+}
+
+func (c *Case) classifyStageResponse(stage *Stage) {
+	if stage.Type != API {
+		return
+	}
+
+	//c.setVar(fmt.Sprintf("%s.actual.status", c.name), stage.Actual.Status)
+	//
+	//for key, value := range stage.Actual.Headers {
+	//	c.setVar(fmt.Sprintf("%s.actual.headers.%s", c.name, key), value)
+	//}
+	//
+	//c.setVar(fmt.Sprintf("%s.actual.body", c.name), stage.Actual.Body)
+}
+
+func (c *Case) classifyStageVariables(s *Stage) {
+	if c.option.variables != nil {
+		for key, value := range c.option.variables {
+			s.SetVar(key, value)
+		}
+	}
+
+	if c.Vars != nil {
+		for key, value := range c.Vars {
+			s.SetVar(key, value)
+		}
+	}
 }

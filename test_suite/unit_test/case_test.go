@@ -88,3 +88,22 @@ func (s *CaseSuite) TestCaseExecuteWithReportGen(c *C) {
 	// then
 	c.Check(err, IsNil)
 }
+
+func (s *CaseSuite) TestCaseExecuteWithVariable(c *C) {
+	// given
+	file, _ := os.ReadFile("./data/variables-test.yaml")
+	tc := &test_suite.Case{}
+
+	// when
+	_ = yaml.Unmarshal(file, tc)
+	err := tc.Execute()
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	_, err = test_report.GetReport().Gen("gen")
+
+	// then
+	c.Check(err, IsNil)
+}

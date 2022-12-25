@@ -1,0 +1,31 @@
+stages:
+  - type: api
+    name: say hello
+    request:
+      url: '{{ .url }}'
+      method: GET
+      headers:
+        content-type: application/json
+      body: '{"sequence": "hello world"}'
+
+  - type: api
+    name: say hello twice
+    request:
+      url: '{{ .url }}'
+      method: GET
+      headers:
+        content-type: application/json
+      body: '{"sequence": "hello world"}'
+
+  - type:
+    name: say hello twice
+    request:
+      url: '{{ .url }}'
+      method: GET
+      headers:
+        content-type: application/json
+      body: '{"sequence": "hello world"}'
+
+
+vars:
+  url: http://127.0.0.1:8884/hello
