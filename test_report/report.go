@@ -23,9 +23,9 @@ func BuildReport() *Report {
 }
 
 type stageReport struct {
-	Pass   bool        `json:"pass"`
-	Name   string      `json:"name"`
-	Detail interface{} `json:"detail,omitempty"`
+	Pass   bool   `json:"pass"`
+	Name   string `json:"name"`
+	Detail any    `json:"detail,omitempty"`
 }
 
 type caseReport struct {
@@ -73,7 +73,7 @@ func (r *Report) getLastCase() *caseReport {
 	return suite.Cases[len(suite.Cases)-1]
 }
 
-func (r *Report) AppendStage(name string, pass bool, detail interface{}) {
+func (r *Report) AppendStage(name string, pass bool, detail any) {
 	lastCase := r.getLastCase()
 	if lastCase.Stages == nil {
 		lastCase.Stages = make([]*stageReport, 0)
