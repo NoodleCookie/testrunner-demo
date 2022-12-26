@@ -2,7 +2,7 @@ package test_assertion
 
 type (
 	Assertor interface {
-		Assert(actual interface{}, checker Checker, expect interface{}) (bool, error)
+		Assert(actual any, checker Checker, expect any) (bool, error)
 	}
 
 	AbstractAssertor struct {
@@ -11,7 +11,7 @@ type (
 	}
 
 	Checker interface {
-		Check(actual, expect interface{}) (result bool, error error)
+		Check(actual, expect any) (result bool, error error)
 	}
 )
 
@@ -20,11 +20,11 @@ var (
 	_ Checker  = (*isEqual)(nil)
 )
 
-func (a *AbstractAssertor) Assert(actual interface{}, checker Checker, expect interface{}) (bool, error) {
+func (a *AbstractAssertor) Assert(actual any, checker Checker, expect any) (bool, error) {
 	if a.before != nil {
 		a.before()
 	}
-	
+
 	result, err := checker.Check(actual, expect)
 
 	if a.after != nil {

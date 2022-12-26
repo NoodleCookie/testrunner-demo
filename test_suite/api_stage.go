@@ -51,7 +51,7 @@ func (s *Stage) executeApi() error {
 		if err != nil || !assert {
 			s.apiReport(assert, err.Error())
 		} else {
-			s.apiReport(assert, map[string]interface{}{"request": s.Request, "assertion": s.Assertion})
+			s.apiReport(assert, map[string]any{"request": s.Request, "assertion": s.Assertion})
 		}
 
 		return nil
@@ -60,7 +60,7 @@ func (s *Stage) executeApi() error {
 	return nil
 }
 
-func (s *Stage) apiReport(pass bool, detail interface{}) {
+func (s *Stage) apiReport(pass bool, detail any) {
 	if common.CurrentPhase() == common.Asserting {
 		test_report.GetReport().AppendStage(s.Name, pass, detail)
 	}
