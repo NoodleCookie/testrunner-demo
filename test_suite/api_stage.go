@@ -15,6 +15,12 @@ type Request struct {
 	Body    string            `yaml:"body,omitempty"`
 }
 
+type Actual struct {
+	Status  string
+	Headers map[string]string
+	Body    string
+}
+
 type Assertion struct {
 	Status  int               `yaml:"status,omitempty"`
 	Headers map[string]string `yaml:"headers,omitempty"`

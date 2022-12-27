@@ -2,3 +2,4 @@ testrunner.iml
 .idea
 testrunner
 **/unit_test/gen
+./mock/data/logs/**
