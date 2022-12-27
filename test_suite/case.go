@@ -42,13 +42,13 @@ func (c *Case) Execute() error {
 		start := time.Now()
 		for _, stage := range c.filter() {
 
-			c.classifyStageVariables(&stage)
+			c.deliverCaseVariables(&stage)
 
 			if stage.Execute() != nil {
 				return stage.Execute()
 			}
 
-			c.classifyStageResponse(&stage)
+			c.collectStageVariables(&stage)
 
 		}
 		duration := time.Since(start)
@@ -86,7 +86,7 @@ func (c *Case) filter() []Stage {
 	return result
 }
 
-func (c *Case) classifyStageResponse(stage *Stage) {
+func (c *Case) collectStageVariables(stage *Stage) {
 	if stage.Type != API {
 		return
 	}
@@ -100,7 +100,7 @@ func (c *Case) classifyStageResponse(stage *Stage) {
 	//c.setVar(fmt.Sprintf("%s.actual.body", c.name), stage.Actual.Body)
 }
 
-func (c *Case) classifyStageVariables(s *Stage) {
+func (c *Case) deliverCaseVariables(s *Stage) {
 	if c.option.variables != nil {
 		for key, value := range c.option.variables {
 			s.SetVar(key, value)

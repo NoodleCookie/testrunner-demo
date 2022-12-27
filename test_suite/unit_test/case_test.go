@@ -1,6 +1,7 @@
 package unit_test
 
 import (
+	"fmt"
 	"gopkg.in/yaml.v2"
 	"os"
 	"testing"
@@ -89,9 +90,9 @@ func (s *CaseSuite) TestCaseExecuteWithReportGen(c *C) {
 	c.Check(err, IsNil)
 }
 
-func (s *CaseSuite) TestCaseExecuteWithVariable(c *C) {
+func (s *CaseSuite) TestCaseExecuteWithCaseVariable(c *C) {
 	// given
-	file, _ := os.ReadFile("./data/variables-test.yaml")
+	file, _ := os.ReadFile("./data/testsuite_case_level_vars/variables-test.yaml")
 	tc := &test_suite.Case{}
 
 	// when
@@ -102,8 +103,90 @@ func (s *CaseSuite) TestCaseExecuteWithVariable(c *C) {
 	c.Check(err, IsNil)
 
 	// when
-	_, err = test_report.GetReport().Gen("gen")
+	_, err = test_report.GetReport().Gen("gen/testsuite_case_level_vars")
 
 	// then
 	c.Check(err, IsNil)
+
+	// when
+	file, err = os.ReadFile(fmt.Sprintf("gen/testsuite_case_level_vars/%s.%s", common.ReportFile, common.ReportFileExt))
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	report := make(map[string]any, 0)
+	err = yaml.Unmarshal(file, &report)
+
+	// then
+	c.Check(err, IsNil)
+	c.Check(report["pass"], Equals, true)
+}
+
+func (s *CaseSuite) TestCaseExecuteWithSuiteVariable(c *C) {
+	// given
+	suite, err := test_suite.BuildTestSuite("./data/testsuite_suite_level_vars")
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	err = suite.Execute()
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	_, err = test_report.GetReport().Gen("./gen/testsuite_suite_level_vars")
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	file, err := os.ReadFile(fmt.Sprintf("gen/testsuite_suite_level_vars/%s.%s", common.ReportFile, common.ReportFileExt))
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	report := make(map[string]any, 0)
+	err = yaml.Unmarshal(file, &report)
+
+	// then
+	c.Check(err, IsNil)
+	c.Check(report["pass"], Equals, true)
+}
+
+func (s *CaseSuite) TestCaseExecuteWithBothSuiteCaseVariable(c *C) {
+	// given
+	suite, err := test_suite.BuildTestSuite("./data/testsuite_both_suite_case_level_vars")
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	err = suite.Execute()
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	_, err = test_report.GetReport().Gen("./gen/testsuite_both_suite_case_level_vars")
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	file, err := os.ReadFile(fmt.Sprintf("gen/testsuite_both_suite_case_level_vars/%s.%s", common.ReportFile, common.ReportFileExt))
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	report := make(map[string]any, 0)
+	err = yaml.Unmarshal(file, &report)
+
+	// then
+	c.Check(err, IsNil)
+	c.Check(report["pass"], Equals, true)
 }

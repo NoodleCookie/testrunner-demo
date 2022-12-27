@@ -12,11 +12,11 @@ import (
 
 func Test(t *testing.T) { TestingT(t) }
 
-type CaseSuite struct{}
+type RunnerSuite struct{}
 
-var _ = Suite(&CaseSuite{})
+var _ = Suite(&RunnerSuite{})
 
-//func (s *CaseSuite) TestRunnerCorrectCheck(c *C) {
+//func (s *RunnerSuite) TestRunnerCorrectCheck(c *C) {
 //	// given
 //	testrunner := test_runner.Testrunner{}
 //
@@ -29,7 +29,7 @@ var _ = Suite(&CaseSuite{})
 //	c.Check(description.Import[0], Equals, "hello-test")
 //}
 //
-//func (s *CaseSuite) TestRunnerErrorCheck(c *C) {
+//func (s *RunnerSuite) TestRunnerErrorCheck(c *C) {
 //	// given
 //	testrunner := test_runner.Testrunner{}
 //
@@ -41,7 +41,7 @@ var _ = Suite(&CaseSuite{})
 //	c.Assert(err.Error(), Equals, "you must import your testcase into description")
 //}
 
-func (s *CaseSuite) TestRunnerRun(c *C) {
+func (s *RunnerSuite) TestRunnerRun(c *C) {
 	// given
 	testrunner := test_runner.Testrunner{}
 
@@ -52,7 +52,7 @@ func (s *CaseSuite) TestRunnerRun(c *C) {
 	c.Check(err, IsNil)
 }
 
-func (s *CaseSuite) TestRunnerExec(c *C) {
+func (s *RunnerSuite) TestRunnerExec(c *C) {
 	// given
 	testrunner := test_runner.Testrunner{}
 
@@ -69,7 +69,7 @@ func (s *CaseSuite) TestRunnerExec(c *C) {
 	c.Check(err, IsNil)
 }
 
-func (s *CaseSuite) TestRunnerReportWithCorrectRequest(c *C) {
+func (s *RunnerSuite) TestRunnerReportWithCorrectRequest(c *C) {
 	// given
 	testrunner := test_runner.Testrunner{}
 
@@ -97,7 +97,7 @@ func (s *CaseSuite) TestRunnerReportWithCorrectRequest(c *C) {
 
 }
 
-func (s *CaseSuite) TestRunnerReportWithIncorrectRequest(c *C) {
+func (s *RunnerSuite) TestRunnerReportWithIncorrectRequest(c *C) {
 	// given
 	testrunner := test_runner.Testrunner{}
 
@@ -126,7 +126,7 @@ func (s *CaseSuite) TestRunnerReportWithIncorrectRequest(c *C) {
 }
 
 //todo: finish the unit-test case
-//func (s *CaseSuite) TestRunnerReportWithNilAssertion(c *C) {
+//func (s *RunnerSuite) TestRunnerReportWithNilAssertion(c *C) {
 //	// given
 //	testrunner := test_runner.Testrunner{}
 //
@@ -153,3 +153,43 @@ func (s *CaseSuite) TestRunnerReportWithIncorrectRequest(c *C) {
 //	c.Check(report.Suites[0].Cases[0].Stages, HasLen, 2)
 //
 //}
+
+func (s *RunnerSuite) TestRunnerWithMultiLevelVars(c *C) {
+	// given
+	testrunner := test_runner.Testrunner{}
+	// when
+	err := testrunner.Run("./data/testsuite_multi_level_vars/only_testcase")
+	// then
+	c.Check(err, IsNil)
+	// when
+	_, err = test_report.GetReport().Gen("./gen/multi_level_vars/only_testcase")
+	// then
+	file, _ := os.ReadFile("./gen/testrunner-report.json")
+	report := make(map[string]any, 0)
+	_ = json.Unmarshal(file, &report)
+	c.Check(report, NotNil)
+
+	// given
+	err = testrunner.Run("./data/testsuite_multi_level_vars/only_description")
+	// then
+	c.Check(err, IsNil)
+	// when
+	_, err = test_report.GetReport().Gen("./gen/multi_level_vars/only_description")
+	// then
+	file, _ = os.ReadFile("./gen/testrunner-report.json")
+	report = make(map[string]any, 0)
+	_ = json.Unmarshal(file, &report)
+	c.Check(report, NotNil)
+
+	// given
+	err = testrunner.Run("./data/testsuite_multi_level_vars/both_desc_testcase")
+	// then
+	c.Check(err, IsNil)
+	// when
+	_, err = test_report.GetReport().Gen("./gen/multi_level_vars/both_desc_testcase")
+	// then
+	file, _ = os.ReadFile("./gen/testrunner-report.json")
+	report = make(map[string]any, 0)
+	_ = json.Unmarshal(file, &report)
+	c.Check(report, NotNil)
+}

@@ -31,19 +31,15 @@ type Assertion struct {
 
 func (s *Stage) executeApi() error {
 	if common.CurrentPhase() == common.Asserting {
-		//send http request base on stage request
 		request, err := http.NewRequest(s.Request.Method, s.Request.Url, nil)
 		if err != nil {
 			panic(err)
 		}
-		//get http response
 		res, err := http.DefaultClient.Do(request)
 		if err != nil {
 			panic(err)
 		}
-		//get status code from response
 		statusCode := res.StatusCode
-		//get body from response
 		body := res.Body
 		if err != nil {
 			panic(err)
@@ -51,13 +47,14 @@ func (s *Stage) executeApi() error {
 
 		defer body.Close()
 
-		assertor := test_assertion.GenericAssertor{}
-
-		assert, err := assertor.Assert(statusCode, test_assertion.Equals, s.Assertion.Status)
-		if err != nil || !assert {
-			s.apiReport(assert, err.Error())
-		} else {
-			s.apiReport(assert, map[string]any{"request": s.Request, "assertion": s.Assertion})
+		if s.Assertion != nil {
+			assertor := test_assertion.GenericAssertor{}
+			assert, err := assertor.Assert(statusCode, test_assertion.Equals, s.Assertion.Status)
+			if err != nil || !assert {
+				s.apiReport(assert, err.Error())
+			} else {
+				s.apiReport(assert, map[string]any{"request": s.Request, "assertion": s.Assertion})
+			}
 		}
 
 		return nil

@@ -1,0 +1,115 @@
+{
+  "pass": true,
+  "suites": [
+    {
+      "pass": true,
+      "name": "hello-world",
+      "cases": [
+        {
+          "pass": true,
+          "name": "demo/hello-world/hello-world-test",
+          "run-time": 18736950
+        }
+      ]
+    },
+    {
+      "pass": true,
+      "name": "case-level",
+      "cases": [
+        {
+          "pass": true,
+          "name": "demo/multi-variables/case-level/hello-vars",
+          "stages": [
+            {
+              "pass": true,
+              "name": "first_call",
+              "detail": {
+                "assertion": {
+                  "Status": 201,
+                  "Headers": null,
+                  "Body": {
+                    "Equals": ""
+                  }
+                },
+                "request": {
+                  "Url": "http://127.0.0.1:8884/hello",
+                  "Method": "GET",
+                  "Headers": null,
+                  "Params": null,
+                  "Body": ""
+                }
+              }
+            }
+          ],
+          "run-time": 15647319
+        }
+      ]
+    },
+    {
+      "pass": true,
+      "name": "multi-level",
+      "cases": [
+        {
+          "pass": true,
+          "name": "demo/multi-variables/multi-level/hello-vars",
+          "stages": [
+            {
+              "pass": true,
+              "name": "first_call",
+              "detail": {
+                "assertion": {
+                  "Status": 201,
+                  "Headers": null,
+                  "Body": {
+                    "Equals": ""
+                  }
+                },
+                "request": {
+                  "Url": "http://127.0.0.1:8884/hello",
+                  "Method": "GET",
+                  "Headers": null,
+                  "Params": null,
+                  "Body": ""
+                }
+              }
+            }
+          ],
+          "run-time": 16258272
+        }
+      ]
+    },
+    {
+      "pass": true,
+      "name": "suite-level",
+      "cases": [
+        {
+          "pass": true,
+          "name": "demo/multi-variables/suite-level/hello-vars",
+          "stages": [
+            {
+              "pass": true,
+              "name": "first_call",
+              "detail": {
+                "assertion": {
+                  "Status": 201,
+                  "Headers": null,
+                  "Body": {
+                    "Equals": ""
+                  }
+                },
+                "request": {
+                  "Url": "http://127.0.0.1:8884/hello",
+                  "Method": "GET",
+                  "Headers": null,
+                  "Params": null,
+                  "Body": ""
+                }
+              }
+            }
+          ],
+          "run-time": 14833237
+        }
+      ]
+    }
+  ]
+}

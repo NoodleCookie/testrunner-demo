@@ -1,0 +1,10 @@
+vars:
+  url: "http://127.0.0.1:8884/hello"
+
+stages:
+  - type: api
+    request:
+      url: "{{ .url }}"
+      method: GET
+    assert:
+      status: 201

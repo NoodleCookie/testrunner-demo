@@ -60,7 +60,7 @@ stages:
 
 运行
 ```shell
- ./testrunner
+ ./testrunner exec demo
 ```
 
 mock服务

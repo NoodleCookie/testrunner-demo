@@ -1,0 +1,11 @@
+stages:
+  - type: api
+    name: say hello
+    request:
+      url: '{{ .url }}'
+      method: GET
+      headers:
+        content-type: application/json
+      body: '{"sequence": "hello world"}'
+    assert:
+      status: 201

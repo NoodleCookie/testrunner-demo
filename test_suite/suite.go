@@ -13,22 +13,16 @@ import (
 )
 
 type Suite struct {
-	name  string
-	cases []Case
+	name   string
+	cases  []Case
+	option struct {
+		variables map[string]any
+	}
 }
 
 type description struct {
-	Import []string `yaml:"import,omitempty"`
-}
-
-func (s *Suite) SetVar(key string, value any) {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (s *Suite) Var() map[string]any {
-	//TODO implement me
-	panic("implement me")
+	Import []string          `yaml:"import,omitempty"`
+	Vars   map[string]string `yaml:"vars,omitempty"`
 }
 
 func BuildTestSuite(dir string) (*Suite, error) {
@@ -57,6 +51,7 @@ func BuildTestSuite(dir string) (*Suite, error) {
 
 	for _, caseName := range description.Import {
 
+		//todo: modify current dir condition
 		if strings.HasPrefix(caseName, "../") {
 			return nil, errors.New(fmt.Sprintf("your imported testcase must be created in current dir %s", dir))
 		}
@@ -78,6 +73,13 @@ func BuildTestSuite(dir string) (*Suite, error) {
 		}
 		testcase.name = caseName
 		suite.cases = append(suite.cases, *testcase)
+	}
+
+	suite.option.variables = make(map[string]any, 0)
+	if description.Vars != nil {
+		for key, value := range description.Vars {
+			suite.option.variables[key] = value
+		}
 	}
 	return suite, nil
 }
@@ -103,6 +105,9 @@ func IsTestSuite(dir string) bool {
 func (s *Suite) Execute() error {
 	s.report()
 	for _, testcase := range s.cases {
+
+		s.deliverSuiteVariables(&testcase)
+
 		if err := testcase.Execute(); err != nil {
 			return err
 		}
@@ -114,5 +119,13 @@ func (s *Suite) report() {
 	if common.CurrentPhase() == common.Asserting {
 		report := test_report.GetReport()
 		report.AppendSuite(s.name)
+	}
+}
+
+func (s *Suite) deliverSuiteVariables(c *Case) {
+	if s.option.variables != nil {
+		for key, value := range s.option.variables {
+			c.SetVar(key, value)
+		}
 	}
 }

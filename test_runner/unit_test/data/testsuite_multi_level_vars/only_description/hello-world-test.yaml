@@ -1,0 +1,7 @@
+stages:
+  - type: api
+    request:
+      url: '{{ .url }}'
+      method: GET
+    assert:
+      status: 201
