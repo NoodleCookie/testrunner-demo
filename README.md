@@ -10,14 +10,15 @@
 
 #### 测试声明（迭代中）
 
-
 description.yaml
+
 ```yaml
 import:
   - hello-world
 ```
 
 hello-world.yaml
+
 ```yaml
 stages:
   - type: api
@@ -46,29 +47,40 @@ stages:
 
 #### 基本结构
 
-使用 `suite, case, stage` 来描述一套测试， 1个suite通过import字段引入n个case，1个case通过stages字段编写n个stage，testrunner通过遍历和识别root路径下所有的suite执行测试。
+使用 `suite, case, stage` 来描述一套测试，
+1个suite通过import字段引入n个case，1个case通过stages字段编写n个stage，testrunner通过遍历和识别root路径下所有的suite执行测试。
 
-因此 `suite, case, stage` 都是可执行的， 都应该实现`excutable`接口，在`Execute()`中进行读取环境变量（如系统环境变量`testrunner_phase`以及测试用例变量`testcase_varibales`）完成用例的初始化以及执行测试和生成报告的逻辑。
-
+因此 `suite, case, stage` 都是可执行的， 都应该实现`excutable`接口，在`Execute()`
+中进行读取环境变量（如系统环境变量`testrunner_phase`以及测试用例变量`testcase_varibales`）完成用例的初始化以及执行测试和生成报告的逻辑。
 
 #### Dev
 
 构建
+
 ```shell
  go build
 ```
 
 运行
+
+- 执行断言
+
 ```shell
- ./testrunner exec demo
+ ./testrunner assert demo/assert
 ```
 
-mock服务
+- 录制真实结果
+
+```shell
+ ./testrunner record demo/record
+```
+
+
+启动mock服务
 
 ```shell
 docker-compose -f mock/docker-compose.yml up -d
 ```
-
 
 单元测试
 

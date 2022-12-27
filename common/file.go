@@ -5,7 +5,7 @@ import "os"
 type TestrunnerPhase string
 
 const (
-	PhaseEnv            = "PHASE"
+	PhaseEnv            = "TESTRUNNER_PHASE"
 	DescriptionFileName = "description"
 	Recording           = TestrunnerPhase("record")
 	Asserting           = TestrunnerPhase("assert")

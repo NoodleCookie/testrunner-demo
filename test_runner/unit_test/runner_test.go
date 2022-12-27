@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"testing"
+	"testrunner/common"
 	"testrunner/test_report"
 	"testrunner/test_runner"
 
@@ -15,6 +16,10 @@ func Test(t *testing.T) { TestingT(t) }
 type RunnerSuite struct{}
 
 var _ = Suite(&RunnerSuite{})
+
+func (s *RunnerSuite) SetUpTest(c *C) {
+	_ = os.Setenv(common.PhaseEnv, string(common.Asserting))
+}
 
 //func (s *RunnerSuite) TestRunnerCorrectCheck(c *C) {
 //	// given
@@ -192,4 +197,14 @@ func (s *RunnerSuite) TestRunnerWithMultiLevelVars(c *C) {
 	report = make(map[string]any, 0)
 	_ = json.Unmarshal(file, &report)
 	c.Check(report, NotNil)
+}
+
+func (s *RunnerSuite) TestRunnerWithRecordMode(c *C) {
+	// given
+	_ = os.Setenv(common.PhaseEnv, string(common.Recording))
+	testrunner := test_runner.Testrunner{}
+	// when
+	err := testrunner.Run("./data/testsuite_ready_for_record")
+	// then
+	c.Check(err, IsNil)
 }

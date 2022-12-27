@@ -11,9 +11,11 @@ type Stage struct {
 	Type      StageType  `yaml:"type,omitempty"`
 	Name      string     `yaml:"name,omitempty"`
 	Request   Request    `yaml:"request,omitempty"`
+	Actual    *Actual    `yaml:"actual,omitempty"`
 	Assertion *Assertion `yaml:"assert,omitempty"`
 	option    struct {
-		variables map[string]any
+		renderStage *Stage
+		variables   map[string]any
 	}
 }
 
@@ -26,6 +28,17 @@ func (s *Stage) SetVar(key string, value any) {
 
 func (s *Stage) Var() map[string]any {
 	return s.option.variables
+}
+
+func (s *Stage) GetRequest() Request {
+	if s.option.renderStage != nil {
+		return s.getRenderRequest()
+	}
+	return s.Request
+}
+
+func (s *Stage) getRenderRequest() Request {
+	return s.option.renderStage.Request
 }
 
 func (s *Stage) Execute() error {
@@ -52,7 +65,7 @@ func (s *Stage) render() {
 		panic(err)
 	}
 
-	if err := json.Unmarshal([]byte(escapeHTMLChar(buffer.String())), &s); err != nil {
+	if err := json.Unmarshal([]byte(escapeHTMLChar(buffer.String())), &s.option.renderStage); err != nil {
 		panic(err)
 	}
 }

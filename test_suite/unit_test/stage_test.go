@@ -30,8 +30,8 @@ func (s *StageSuite) TestCaseExecuteWithRender(c *C) {
 	// then
 	c.Check(err, IsNil)
 	c.Check(stage.Name, Equals, "test_stage")
-	c.Check(stage.Request.Url, Equals, "https://www.baidu.com")
-	c.Check(stage.Request.Body, Equals, `other_stage body is {"name":"unbelievable"}`)
-	c.Check(stage.Request.Headers["content-type"], Equals, "application/xml")
+	c.Check(stage.GetRequest().Url, Equals, "https://www.baidu.com")
+	c.Check(stage.GetRequest().Body, Equals, `other_stage body is {"name":"unbelievable"}`)
+	c.Check(stage.GetRequest().Headers["content-type"], Equals, "application/xml")
 
 }

@@ -1,6 +1,9 @@
 package test_suite
 
 import (
+	"gopkg.in/yaml.v2"
+	"os"
+	"path/filepath"
 	"testrunner/common"
 	"testrunner/test_report"
 	"time"
@@ -8,16 +11,21 @@ import (
 
 type Case struct {
 	name   string
-	Stages []Stage           `yaml:"stages,omitempty"`
+	Stages []*Stage          `yaml:"stages,omitempty"`
 	Vars   map[string]string `yaml:"vars,omitempty"`
 
 	option struct {
-		filters   []func(stage Stage) bool
-		variables map[string]any
+		relativePath string
+		filters      []func(stage *Stage) bool
+		variables    map[string]any
 	}
 }
 
 func (c *Case) SetVar(key string, value any) {
+	c.setVar(key, value)
+}
+
+func (c *Case) setVar(key string, value any) {
 	if c.option.variables == nil {
 		c.option.variables = make(map[string]any, 0)
 	}
@@ -28,53 +36,78 @@ func (c *Case) Var() map[string]any {
 	return c.option.variables
 }
 
-func (c *Case) AddFilter(filter func(stage Stage) bool) *Case {
+func (c *Case) AddFilter(filter func(stage *Stage) bool) *Case {
 	if c.option.filters == nil {
-		c.option.filters = make([]func(stage Stage) bool, 0)
+		c.option.filters = make([]func(stage *Stage) bool, 0)
 	}
 	c.option.filters = append(c.option.filters, filter)
 	return c
 }
 
 func (c *Case) Execute() error {
-	c.report()
-	if c.Stages != nil {
-		start := time.Now()
-		for _, stage := range c.filter() {
+	switch common.CurrentPhase() {
+	case common.Recording:
 
-			c.deliverCaseVariables(&stage)
+		if c.Stages != nil {
+			if err := c.execute(); err != nil {
+				return err
+			}
+		}
+		return c.record()
 
-			if stage.Execute() != nil {
-				return stage.Execute()
+	case common.Asserting:
+
+		c.report()
+
+		if c.Stages != nil {
+
+			start := time.Now()
+
+			if err := c.execute(); err != nil {
+				return err
 			}
 
-			c.collectStageVariables(&stage)
+			duration := time.Since(start)
 
+			test_report.GetReport().SetCaseRunTime(duration)
 		}
-		duration := time.Since(start)
-		test_report.GetReport().SetCaseRunTime(duration)
+		return nil
+	default:
+		return nil
+	}
+}
+
+func (c *Case) execute() error {
+	for _, stage := range c.filter() {
+
+		c.deliverCaseVariables(stage)
+
+		if err := stage.Execute(); err != nil {
+			return err
+		}
+
+		c.collectStageVariables(stage)
+
 	}
 	return nil
 }
 
 func (c *Case) report() {
-	if common.CurrentPhase() == common.Asserting {
-		report := test_report.GetReport()
-		report.AppendCase(c.name)
-	}
+	report := test_report.GetReport()
+	report.AppendCase(c.name)
 }
 
-func (c *Case) filter() []Stage {
+func (c *Case) filter() []*Stage {
 
 	if c.option.filters == nil {
 		return c.Stages
 	}
 
 	if c.Stages == nil {
-		return []Stage{}
+		return []*Stage{}
 	}
 
-	var result []Stage
+	var result []*Stage
 	for _, stage := range c.Stages {
 		for _, filter := range c.option.filters {
 			if filter(stage) {
@@ -87,17 +120,11 @@ func (c *Case) filter() []Stage {
 }
 
 func (c *Case) collectStageVariables(stage *Stage) {
-	if stage.Type != API {
+	if stage.Type != API || stage.Actual == nil {
 		return
 	}
 
-	//c.setVar(fmt.Sprintf("%s.actual.status", c.name), stage.Actual.Status)
-	//
-	//for key, value := range stage.Actual.Headers {
-	//	c.setVar(fmt.Sprintf("%s.actual.headers.%s", c.name, key), value)
-	//}
-	//
-	//c.setVar(fmt.Sprintf("%s.actual.body", c.name), stage.Actual.Body)
+	c.setVar(stage.Name, map[string]any{"actual": map[string]any{"body": stage.Actual.Body, "status": stage.Actual.Status, "headers": stage.Actual.Headers}})
 }
 
 func (c *Case) deliverCaseVariables(s *Stage) {
@@ -112,4 +139,17 @@ func (c *Case) deliverCaseVariables(s *Stage) {
 			s.SetVar(key, value)
 		}
 	}
+}
+
+func (c *Case) record() error {
+	caseData, err := yaml.Marshal(c)
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(c.option.relativePath, caseData, 0766)
+}
+
+func (c *Case) SetName(name string) {
+	c.name = filepath.Base(name)
+	c.option.relativePath = name
 }

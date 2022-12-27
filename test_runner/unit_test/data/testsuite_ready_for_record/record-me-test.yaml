@@ -1,0 +1,39 @@
+stages:
+- type: api
+  name: record_me
+  request:
+    url: http://127.0.0.1:8884/record-me
+    method: GET
+  actual:
+    status: 201
+    headers:
+      Cache-Control: no-cache, no-stage, must-revalidate
+      Content-Type: application/json
+      Date: 2022-12-27 08:33:12+0000
+      Expires: Thu, 01 Jan 1970 00:00:00 GMT
+      Pragma: no-cache
+      Record: "true"
+      Server: stubby4j/7.5.3-SNAPSHOT (HTTP stub server)
+      Vary: Accept-Encoding, User-Agent
+      X-Powered-By: Jetty(9.4.44.v20210927)
+      X-Stubby-Resource-Id: "3"
+    body: '{"record":true}'
+- type: api
+  name: record_me_again
+  request:
+    url: http://127.0.0.1:8884/record-me
+    method: GET
+  actual:
+    status: 201
+    headers:
+      Cache-Control: no-cache, no-stage, must-revalidate
+      Content-Type: application/json
+      Date: 2022-12-27 08:33:12+0000
+      Expires: Thu, 01 Jan 1970 00:00:00 GMT
+      Pragma: no-cache
+      Record: "true"
+      Server: stubby4j/7.5.3-SNAPSHOT (HTTP stub server)
+      Vary: Accept-Encoding, User-Agent
+      X-Powered-By: Jetty(9.4.44.v20210927)
+      X-Stubby-Resource-Id: "3"
+    body: '{"record":true}'

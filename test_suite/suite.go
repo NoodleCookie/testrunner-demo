@@ -71,7 +71,7 @@ func BuildTestSuite(dir string) (*Suite, error) {
 		if err := yaml.Unmarshal(readFile, testcase); err != nil {
 			return nil, errors.Wrap(err, fmt.Sprintf("failed to unmarsahl testcase file %s", readFile))
 		}
-		testcase.name = caseName
+		testcase.SetName(completedCaseFileName)
 		suite.cases = append(suite.cases, *testcase)
 	}
 

@@ -14,18 +14,18 @@ import (
 
 func Test(t *testing.T) { TestingT(t) }
 
-type CaseSuite struct{}
+type AssertCaseSuite struct{}
 
-var _ = Suite(&CaseSuite{})
+var _ = Suite(&AssertCaseSuite{})
 
-func (s *CaseSuite) SetUpTest(c *C) {
+func (s *AssertCaseSuite) SetUpTest(c *C) {
 	_ = os.Setenv(common.PhaseEnv, string(common.Asserting))
 	test_report.BuildReport()
 	report := test_report.GetReport()
 	report.AppendSuite("unit-test-suite")
 }
 
-func (s *CaseSuite) TestUnmarshalCaseFile(c *C) {
+func (s *AssertCaseSuite) TestUnmarshalCaseFile(c *C) {
 	// given
 	file, _ := os.ReadFile("./data/hello-world-test.yaml")
 	tc := &test_suite.Case{}
@@ -39,7 +39,7 @@ func (s *CaseSuite) TestUnmarshalCaseFile(c *C) {
 	c.Check(tc.Stages[0].Request.Body, Equals, "{\"sequence\": \"hello world\"}")
 }
 
-func (s *CaseSuite) TestCaseExecute(c *C) {
+func (s *AssertCaseSuite) TestCaseExecute(c *C) {
 	// given
 	file, _ := os.ReadFile("./data/hello-world-test.yaml")
 	tc := &test_suite.Case{}
@@ -52,14 +52,14 @@ func (s *CaseSuite) TestCaseExecute(c *C) {
 	c.Check(err, IsNil)
 }
 
-func (s *CaseSuite) TestCaseExecuteWithFilter(c *C) {
+func (s *AssertCaseSuite) TestCaseExecuteWithFilter(c *C) {
 	// given
 	file, _ := os.ReadFile("./data/hello-world-test.yaml")
 	tc := &test_suite.Case{}
 
 	// when
 	_ = yaml.Unmarshal(file, tc)
-	tc.AddFilter(func(stage test_suite.Stage) bool {
+	tc.AddFilter(func(stage *test_suite.Stage) bool {
 		return stage.Type == test_suite.API
 	})
 	err := tc.Execute()
@@ -68,14 +68,14 @@ func (s *CaseSuite) TestCaseExecuteWithFilter(c *C) {
 	c.Check(err, IsNil)
 }
 
-func (s *CaseSuite) TestCaseExecuteWithReportGen(c *C) {
+func (s *AssertCaseSuite) TestCaseExecuteWithReportGen(c *C) {
 	// given
 	file, _ := os.ReadFile("./data/hello-world-test.yaml")
 	tc := &test_suite.Case{}
 
 	// when
 	_ = yaml.Unmarshal(file, tc)
-	tc.AddFilter(func(stage test_suite.Stage) bool {
+	tc.AddFilter(func(stage *test_suite.Stage) bool {
 		return stage.Type == test_suite.API
 	})
 	err := tc.Execute()
@@ -90,7 +90,7 @@ func (s *CaseSuite) TestCaseExecuteWithReportGen(c *C) {
 	c.Check(err, IsNil)
 }
 
-func (s *CaseSuite) TestCaseExecuteWithCaseVariable(c *C) {
+func (s *AssertCaseSuite) TestCaseExecuteWithCaseVariable(c *C) {
 	// given
 	file, _ := os.ReadFile("./data/testsuite_case_level_vars/variables-test.yaml")
 	tc := &test_suite.Case{}
@@ -123,7 +123,7 @@ func (s *CaseSuite) TestCaseExecuteWithCaseVariable(c *C) {
 	c.Check(report["pass"], Equals, true)
 }
 
-func (s *CaseSuite) TestCaseExecuteWithSuiteVariable(c *C) {
+func (s *AssertCaseSuite) TestCaseExecuteWithSuiteVariable(c *C) {
 	// given
 	suite, err := test_suite.BuildTestSuite("./data/testsuite_suite_level_vars")
 
@@ -157,7 +157,7 @@ func (s *CaseSuite) TestCaseExecuteWithSuiteVariable(c *C) {
 	c.Check(report["pass"], Equals, true)
 }
 
-func (s *CaseSuite) TestCaseExecuteWithBothSuiteCaseVariable(c *C) {
+func (s *AssertCaseSuite) TestCaseExecuteWithBothSuiteCaseVariable(c *C) {
 	// given
 	suite, err := test_suite.BuildTestSuite("./data/testsuite_both_suite_case_level_vars")
 
