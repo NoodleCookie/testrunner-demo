@@ -2,10 +2,10 @@ package test_assertion
 
 type (
 	Assertor interface {
-		Assert(actual interface{}, checker Checker, expect interface{}) (bool, error)
+		Assert(actual any, checker Checker, expect any) (bool, error)
 	}
 	Checker interface {
-		Check(actual, expect interface{}) (result bool, error error)
+		Check(actual, expect any) (result bool, error error)
 	}
 )
 

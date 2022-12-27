@@ -28,8 +28,6 @@ func (c *Case) Var() map[string]any {
 	return c.option.variables
 }
 
-var report CaseReport
-
 func (c *Case) AddFilter(filter func(stage Stage) bool) *Case {
 	if c.option.filters == nil {
 		c.option.filters = make([]func(stage Stage) bool, 0)
@@ -54,7 +52,7 @@ func (c *Case) Execute() error {
 
 		}
 		duration := time.Since(start)
-		report.totalTime = duration
+		test_report.GetReport().SetCaseRunTime(duration)
 	}
 	return nil
 }

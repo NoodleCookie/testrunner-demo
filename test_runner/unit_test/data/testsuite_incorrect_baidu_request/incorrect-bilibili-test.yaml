@@ -14,4 +14,4 @@ stages:
       params: { }
       body: "{ }"
     assert:
-      status: 200
+      status: 201

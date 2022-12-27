@@ -1,17 +1,17 @@
 stages:
-  - type:
+  - type: api
     request:
       url: http://www.baidu.com/
       method: GET
       params: { }
       body: "{ }"
-    expect:
+    assert:
       status: 200
-  - type:
+  - type: api
     request:
-      url: http://www.bilibili.com/
+      url: http://www.runoob.com
       method: GET
       params: { }
       body: "{ }"
-    expect:
+    assert:
       status: 200

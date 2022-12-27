@@ -12,7 +12,7 @@ var Match isMatchRegex
 type isEqual struct {
 }
 
-func (i isEqual) Check(actual, expect interface{}) (result bool, error error) {
+func (i isEqual) Check(actual, expect any) (result bool, error error) {
 	if actual == expect {
 		return true, nil
 	}
