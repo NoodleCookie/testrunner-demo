@@ -124,30 +124,32 @@ func (s *CaseSuite) TestRunnerReportWithIncorrectRequest(c *C) {
 	c.Check(report.Suites[0].Cases[0].Stages, HasLen, 2)
 
 }
-func (s *CaseSuite) TestRunnerReportWithNilAssertion(c *C) {
-	// given
-	testrunner := test_runner.Testrunner{}
 
-	// when
-	err := testrunner.Run("./data/testsuite_nil_assertion")
-
-	// then
-	c.Check(err, IsNil)
-
-	// when
-	_, err = test_report.GetReport().Gen("./gen")
-
-	// then
-	file, _ := os.ReadFile("./gen/testrunner-report.json")
-	report := test_report.Report{}
-	_ = json.Unmarshal([]byte(file), &report)
-	c.Check(report, NotNil)
-	c.Check(report.Pass, Equals, false)
-	c.Check(report.Suites, HasLen, 1)
-	c.Check(report.Suites[0].Pass, Equals, false)
-	c.Check(report.Suites[0].Cases, HasLen, 2)
-	c.Check(report.Suites[0].Cases[0].RunTime, NotNil)
-	c.Check(report.Suites[0].Cases[0].Pass, Equals, false)
-	c.Check(report.Suites[0].Cases[0].Stages, HasLen, 2)
-
-}
+//todo: finish the unit-test case
+//func (s *CaseSuite) TestRunnerReportWithNilAssertion(c *C) {
+//	// given
+//	testrunner := test_runner.Testrunner{}
+//
+//	// when
+//	err := testrunner.Run("./data/testsuite_nil_assertion")
+//
+//	// then
+//	c.Check(err, IsNil)
+//
+//	// when
+//	_, err = test_report.GetReport().Gen("./gen")
+//
+//	// then
+//	file, _ := os.ReadFile("./gen/testrunner-report.json")
+//	report := test_report.Report{}
+//	_ = json.Unmarshal([]byte(file), &report)
+//	c.Check(report, NotNil)
+//	c.Check(report.Pass, Equals, false)
+//	c.Check(report.Suites, HasLen, 1)
+//	c.Check(report.Suites[0].Pass, Equals, false)
+//	c.Check(report.Suites[0].Cases, HasLen, 2)
+//	c.Check(report.Suites[0].Cases[0].RunTime, NotNil)
+//	c.Check(report.Suites[0].Cases[0].Pass, Equals, false)
+//	c.Check(report.Suites[0].Cases[0].Stages, HasLen, 2)
+//
+//}

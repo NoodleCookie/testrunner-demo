@@ -11,8 +11,6 @@ type Stage struct {
 	Type      StageType `yaml:"type,omitempty"`
 	Name      string    `yaml:"name,omitempty"`
 	Request   Request   `yaml:"request,omitempty"`
-	Actual    Actual    `yaml:"response,omitempty"`
-	Expect    Response  `yaml:"expect,omitempty"`
 	Assertion Assertion `yaml:"assert,omitempty"`
 	option    struct {
 		variables map[string]any

@@ -17,6 +17,10 @@ type Suite struct {
 	cases []Case
 }
 
+type description struct {
+	Import []string `yaml:"import,omitempty"`
+}
+
 func (s *Suite) SetVar(key string, value any) {
 	//TODO implement me
 	panic("implement me")
@@ -36,7 +40,7 @@ func BuildTestSuite(dir string) (*Suite, error) {
 	base := filepath.Base(dir)
 	suite := &Suite{name: base, cases: make([]Case, 0)}
 
-	description := Description{}
+	description := description{}
 	file, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("check your %s has correct privilege", filename))
@@ -89,7 +93,7 @@ func IsTestSuite(dir string) bool {
 		return false
 	}
 
-	description := &Description{}
+	description := &description{}
 	if err := yaml.Unmarshal(readFile, description); err != nil {
 		return false
 	}
