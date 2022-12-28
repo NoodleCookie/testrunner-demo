@@ -190,3 +190,28 @@ func (s *AssertCaseSuite) TestCaseExecuteWithBothSuiteCaseVariable(c *C) {
 	c.Check(err, IsNil)
 	c.Check(report["pass"], Equals, true)
 }
+
+func (s *AssertCaseSuite) TestCaseExecuteWithErrorRequest(c *C) {
+	// given
+	file, _ := os.ReadFile("./data/error-message-test.yaml")
+	tc := &test_suite.Case{}
+
+	// when
+	_ = yaml.Unmarshal(file, tc)
+	err := tc.Execute()
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	report, err := test_report.GetReport().Gen("gen/testsuite_case_level_vars")
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	file, err = os.ReadFile(report)
+
+	// then
+	c.Check(err, IsNil)
+}

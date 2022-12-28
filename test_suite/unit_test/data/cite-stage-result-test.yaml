@@ -10,7 +10,7 @@ stages:
       Cache-Control: no-cache, no-stage, must-revalidate
       Callback: "true"
       Content-Type: text/html;charset=utf-8
-      Date: 2022-12-27 08:33:10+0000
+      Date: 2022-12-28 01:45:59+0000
       Expires: Thu, 01 Jan 1970 00:00:00 GMT
       Pragma: no-cache
       Server: stubby4j/7.5.3-SNAPSHOT (HTTP stub server)
@@ -33,7 +33,7 @@ stages:
     headers:
       Cache-Control: no-cache, no-stage, must-revalidate
       Content-Type: text/html;charset=utf-8
-      Date: 2022-12-27 08:33:10+0000
+      Date: 2022-12-28 01:45:59+0000
       Expires: Thu, 01 Jan 1970 00:00:00 GMT
       Pragma: no-cache
       Server: stubby4j/7.5.3-SNAPSHOT (HTTP stub server)
@@ -43,3 +43,14 @@ stages:
     body: succeed
   assert:
     status: 200
+    headers:
+      Cache-Control: no-cache, no-stage, must-revalidate
+      Content-Type: text/html;charset=utf-8
+      Date: 2022-12-27 08:33:10+0000
+      Expires: Thu, 01 Jan 1970 00:00:00 GMT
+      Pragma: no-cache
+      Server: stubby4j/7.5.3-SNAPSHOT (HTTP stub server)
+      Vary: Accept-Encoding, User-Agent
+      X-Powered-By: Jetty(9.4.44.v20210927)
+      X-Stubby-Resource-Id: "2"
+    body: succeed

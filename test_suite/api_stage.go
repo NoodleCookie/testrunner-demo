@@ -11,63 +11,67 @@ import (
 )
 
 type Request struct {
-	Url     string            `yaml:"url,omitempty"`
-	Method  string            `yaml:"method,omitempty"`
-	Headers map[string]string `yaml:"headers,omitempty"`
-	Params  map[string]string `yaml:"params,omitempty"`
-	Body    string            `yaml:"body,omitempty"`
+	Url     string            `yaml:"url,omitempty" json:"url,omitempty"`
+	Method  string            `yaml:"method,omitempty" json:"method,omitempty"`
+	Headers map[string]string `yaml:"headers,omitempty" json:"headers,omitempty"`
+	Params  map[string]string `yaml:"params,omitempty" json:"params,omitempty"`
+	Body    string            `yaml:"body,omitempty" json:"body,omitempty"`
 }
 
 type Actual struct {
-	Status  *int
-	Headers map[string]string
-	Body    *string
+	Status  *int              `yaml:"status,omitempty" json:"status,omitempty"`
+	Headers map[string]string `yaml:"headers,omitempty" json:"headers,omitempty"`
+	Body    *string           `yaml:"body,omitempty" json:"body,omitempty"`
 }
 
 type Assertion struct {
-	Status  int               `yaml:"status,omitempty"`
-	Headers map[string]string `yaml:"headers,omitempty"`
-	Body    struct {
-		Equals string `yaml:"equals,omitempty"`
-	} `yaml:"body,omitempty"`
+	Status  int               `yaml:"status,omitempty" json:"status,omitempty"`
+	Headers map[string]string `yaml:"headers,omitempty" json:"headers,omitempty"`
+	Body    string            `yaml:"body,omitempty" json:"body,omitempty"`
+}
+
+func (a *Actual) Success(status int, headers map[string]string, body *string) *Actual {
+	a.Status = &status
+	a.Headers = headers
+	a.Body = body
+	return a
 }
 
 func (s *Stage) executeApi() error {
+
+	s.Actual = &Actual{}
+
 	request, err := http.NewRequest(s.getRenderRequest().Method, s.getRenderRequest().Url, nil)
 	if err != nil {
-		panic(err)
+		s.report(false, err.Error())
+		return nil
 	}
 	request.Header = recoverHeaders(s.getRenderRequest().Headers)
 	resp, err := http.DefaultClient.Do(request)
 	if err != nil {
-		panic(err)
+		s.report(false, err.Error())
+		return nil
 	}
 	statusCode := resp.StatusCode
 	body := resp.Body
 	if err != nil {
-		panic(err)
+		s.report(false, err.Error())
+		return nil
 	}
 
 	defer body.Close()
 
-	s.Actual = &Actual{
-		Status:  &resp.StatusCode,
-		Headers: transferHeaders(resp.Header),
-		Body:    transferBody(resp.Body),
-	}
+	s.Actual.Success(resp.StatusCode, transferHeaders(resp.Header), transferBody(resp.Body))
 
-	if common.CurrentPhase() == common.Asserting {
-		if s.Assertion != nil {
-			assertor := test_assertion.GenericAssertor{}
-			assert, err := assertor.Assert(statusCode, test_assertion.Equals, s.Assertion.Status)
-			if err != nil || !assert {
-				s.apiReport(assert, err.Error())
-			} else {
-				s.apiReport(assert, map[string]any{"request": s.getRenderRequest(), "assertion": s.Assertion})
-			}
+	if common.CurrentPhase() == common.Asserting && s.Assertion != nil {
+		assertor := test_assertion.GenericAssertor{}
+		assert, err := assertor.Assert(statusCode, test_assertion.Equals, s.Assertion.Status)
+		if err != nil || !assert {
+			s.report(assert, err.Error())
+		} else {
+			s.report(assert, map[string]any{"request": s.getRenderRequest(), "assertion": s.Assertion})
 		}
 	}
-
 	return nil
 }
 
@@ -106,8 +110,6 @@ func recoverHeaders(header map[string]string) http.Header {
 	return result
 }
 
-func (s *Stage) apiReport(pass bool, detail any) {
-	if common.CurrentPhase() == common.Asserting {
-		test_report.GetReport().AppendStage(s.Name, pass, detail)
-	}
+func (s *Stage) report(pass bool, detail any) {
+	test_report.GetReport().AppendStage(s.Name, pass, detail)
 }
