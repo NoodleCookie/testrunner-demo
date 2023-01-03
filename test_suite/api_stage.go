@@ -19,9 +19,10 @@ type Request struct {
 }
 
 type Actual struct {
-	Status  *int              `yaml:"status,omitempty" json:"status,omitempty"`
-	Headers map[string]string `yaml:"headers,omitempty" json:"headers,omitempty"`
-	Body    *string           `yaml:"body,omitempty" json:"body,omitempty"`
+	Status       *int              `yaml:"status,omitempty" json:"status,omitempty"`
+	Headers      map[string]string `yaml:"headers,omitempty" json:"headers,omitempty"`
+	Body         *string           `yaml:"body,omitempty" json:"body,omitempty"`
+	ErrorMessage string            `yaml:"error_message,omitempty" json:"error_message,omitempty"`
 }
 
 type Assertion struct {
@@ -36,7 +37,10 @@ func (a *Actual) Success(status int, headers map[string]string, body *string) *A
 	a.Body = body
 	return a
 }
-
+func (a *Actual) Fail(errorMessage string) *Actual {
+	a.ErrorMessage = errorMessage
+	return a
+}
 func (s *Stage) executeApi() error {
 
 	s.Actual = &Actual{}
@@ -49,15 +53,11 @@ func (s *Stage) executeApi() error {
 	request.Header = recoverHeaders(s.getRenderRequest().Headers)
 	resp, err := http.DefaultClient.Do(request)
 	if err != nil {
-		s.report(false, err.Error())
+		s.Actual.Fail(err.Error())
 		return nil
 	}
 	statusCode := resp.StatusCode
 	body := resp.Body
-	if err != nil {
-		s.report(false, err.Error())
-		return nil
-	}
 
 	defer body.Close()
 

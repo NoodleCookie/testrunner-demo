@@ -2,11 +2,13 @@ package unit_test
 
 import (
 	"encoding/json"
+	"gopkg.in/yaml.v2"
 	"os"
 	"testing"
 	"testrunner/common"
 	"testrunner/test_report"
 	"testrunner/test_runner"
+	"testrunner/test_suite"
 
 	. "gopkg.in/check.v1"
 )
@@ -128,6 +130,28 @@ func (s *RunnerSuite) TestRunnerReportWithIncorrectRequest(c *C) {
 	c.Check(report.Suites[0].Cases[0].Pass, Equals, false)
 	c.Check(report.Suites[0].Cases[0].Stages, HasLen, 2)
 
+}
+
+func (s *RunnerSuite) TestRunnerRewriteInputFileWithErrorMessage(c *C) {
+	// given
+	testrunner := test_runner.Testrunner{}
+
+	// when
+	err := testrunner.Run("./data/testsuite_incorrect_request")
+
+	// then
+	c.Check(err, IsNil)
+
+	// when
+	_, err = test_report.GetReport().Gen("./gen")
+
+	// then
+	file, err := os.ReadFile("./data/testsuite_incorrect_request/cite-first-call-result.yaml")
+
+	testcase := test_suite.Case{}
+	err = yaml.Unmarshal(file, &testcase)
+	c.Check(testcase, NotNil)
+	c.Check(testcase.Stages[2].Actual.ErrorMessage, NotNil)
 }
 
 //todo: finish the unit-test case
